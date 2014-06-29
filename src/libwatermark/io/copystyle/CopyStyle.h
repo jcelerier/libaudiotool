@@ -40,6 +40,12 @@ class CopyStyle
 		 */
 		virtual size_type frameIncrement() = 0;
 
+		/**
+		 * @brief lastIncrement
+		 * @return Avancement réel (pour cas aux bornes)
+		 */
+		virtual size_type lastIncrement() = 0;
+
 	protected:
 		const Parameters<data_type>& conf;
 };

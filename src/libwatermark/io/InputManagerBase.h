@@ -32,8 +32,9 @@ class InputManagerBase : public IOManagerBase<data_type>, public InputManagerInt
 
 		virtual Audio_p getNextBuffer() override
 		{
-			if(pos() == 0) // Premier buffer
+			if(pos() == 0 && firstRun) // Premier buffer
 			{
+				firstRun = false;
 				auto d = new CData<data_type>;
 
 				d->_data.resize(channels());
@@ -63,5 +64,7 @@ class InputManagerBase : public IOManagerBase<data_type>, public InputManagerInt
 
 		InputCopy_p<data_type> copyHandler{InputCopy_p<data_type>(new InputSimple<data_type>(this->conf))};
 		Audio_p buffer{nullptr};
+
+		bool firstRun = true;
 };
 

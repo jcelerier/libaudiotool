@@ -15,6 +15,7 @@ class ManagerBase
 {
 	public:
 		ManagerBase() = default;
+		virtual ~ManagerBase() = default;
 
 		ManagerBase(Input_p i,
 					Output_p o):

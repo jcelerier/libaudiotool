@@ -8,6 +8,11 @@ class OutputCopy: public CopyStyle<data_type>
 	public:
 		using CopyStyle<data_type>::CopyStyle;
 		virtual ~OutputCopy() = default;
+
+		virtual typename CopyStyle<data_type>::size_type lastIncrement() override
+		{
+			return this->frameIncrement();
+		}
 };
 
 template <typename T>

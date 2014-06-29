@@ -3,14 +3,15 @@ CONFIG  += console c++11
 QT      = core testlib
 
 SOURCES += main.cpp \
-    testlsb.cpp \
-    testssw.cpp \
-    testBenchmark.cpp \
-    testCopy.cpp \
-    testWindow.cpp \
-    testrlsb.cpp \
-    TestTransform.cpp \
-    testEvaluation.cpp
+#    testlsb.cpp \
+#    testssw.cpp \
+#    testBenchmark.cpp \
+#    testCopy.cpp \
+#    testWindow.cpp \
+#    testrlsb.cpp \
+#    TestTransform.cpp \
+#    testEvaluation.cpp \
+    TestLoop.cpp
 DESTDIR = $$PWD/../../output
 
 contains(QMAKE_TARGET.arch, 64):{
@@ -37,7 +38,7 @@ DEPENDPATH += $$PWD/../libwatermark
 macx {
  LIBS += -L/usr/local/Cellar/libsndfile/1.0.25/lib/ -L/usr/local/Cellar/fftw/3.3.3/lib/
 }
-LIBS+=-lsndfile  -lfftw3 -lgcov
+LIBS+=-lsndfile #  -lfftw3 -lgcov
 
 OTHER_FILES += \
     Vieux_tests.txt

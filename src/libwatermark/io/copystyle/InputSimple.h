@@ -20,6 +20,11 @@ class InputSimple: public InputCopy<data_type>
 			return CopyStyle<data_type>::conf.bufferSize;
 		}
 
+		virtual typename CopyStyle<data_type>::size_type lastIncrement() override
+		{
+			return _lastIncrement;
+		}
+
 		/**
 		 * @brief copy
 		 * @param in Grand buffer
@@ -35,11 +40,16 @@ class InputSimple: public InputCopy<data_type>
 			if (frameIncrement() <= big_vector_length - pos)
 			{
 				std::copy_n(in + pos, frameIncrement(), out);
+				_lastIncrement = frameIncrement();
 			}
 			else
 			{
+				_lastIncrement = frameIncrement() - (big_vector_length - pos);
 				std::copy_n(in + pos, big_vector_length - pos, out);
-				std::fill_n(out + big_vector_length - pos, frameIncrement() - (big_vector_length - pos), 0);
+				std::fill_n(out + big_vector_length - pos, _lastIncrement, 0);
 			}
 		}
+
+	private:
+		typename CopyStyle<data_type>::size_type _lastIncrement{};
 };

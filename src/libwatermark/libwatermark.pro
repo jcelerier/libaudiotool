@@ -83,5 +83,9 @@ HEADERS += \
     benchmark/properties/Frequency.h \
     benchmark/properties/Threshold.h \
     benchmark/properties/Filter.h \
-    benchmark/properties/FFTProperty.h
+    benchmark/properties/FFTProperty.h \
+    io/LoopInputProxy.h \
+    io/InputMultiplexer2.h \
+    benchmark/Sum.h \
+    manager/SummingManager.h
 
