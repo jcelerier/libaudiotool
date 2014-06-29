@@ -86,6 +86,5 @@ HEADERS += \
     benchmark/properties/FFTProperty.h \
     io/LoopInputProxy.h \
     io/InputMultiplexer2.h \
-    benchmark/Sum.h \
     manager/SummingManager.h
 
