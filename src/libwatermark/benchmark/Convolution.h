@@ -25,10 +25,10 @@ class Convolution : public BenchmarkBase<data_type>, public FilterProperty
 			for(auto& sampleData : channelsData)
 			{
 				std::vector<data_type> y(sampleData.size());
-				for (auto i = 0U; i < sampleData.size(); i++)
+				for (auto i{0U}; i < sampleData.size(); i++)
 				{
 					y[i] = 0;
-					for (auto j = 0U; j < h.size() && i >= j; j++ )
+					for (auto j{0U}; j < h.size() && i >= j; j++ )
 					{
 						y[i] += sampleData[i - j] * h[j];
 					}
@@ -43,6 +43,6 @@ class Convolution : public BenchmarkBase<data_type>, public FilterProperty
 		}
 
 	private:
-		std::vector<data_type> h = {0.0140, 0.0299, 0.0719, 0.1246, 0.1677,
-									0.1842, 0.1677, 0.1246, 0.0719, 0.0299, 0.0140};
+		std::vector<data_type> h{0.0140, 0.0299, 0.0719, 0.1246, 0.1677,
+								 0.1842, 0.1677, 0.1246, 0.0719, 0.0299, 0.0140};
 };

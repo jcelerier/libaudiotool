@@ -1,12 +1,5 @@
 #pragma once
-#include <istream>
-#include <fstream>
-
-#ifdef __APPLE__
-#include "/usr/local/Cellar/libsndfile/1.0.25/include/sndfile.hh"
-#else
-#include "sndfile.hh"
-#endif
+#include <sndfile.hh>
 
 #include "InputManagerBase.h"
 #include "../mathutils/math_util.h"
@@ -44,7 +37,7 @@ class FileInput : public InputManagerBase<data_type>
 			vec.resize(myf.frames() * myf.channels());
 
 			int parity = (myf.frames() % 2 != 0) ? -1 : 0;
-			for(auto i = 0U; i < myf.channels(); ++i)
+			for(int i = 0; i < myf.channels(); ++i)
 				myf.read(vec.data() + i * (myf.frames() + parity),  myf.frames() + parity);
 
 			this->v() = MathUtil::deinterleave(vec, (unsigned int) myf.channels(), (unsigned int) myf.frames());

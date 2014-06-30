@@ -24,7 +24,7 @@ class LoopInputProxy : public InputManagerBase<data_type>
 
 		virtual Audio_p getNextBuffer() final override
 		{
-			static int loop_count = 10;
+			static int loop_count = 100;
 			auto impl = static_cast<InputManagerBase<data_type>*>(inputImpl.get());
 			Audio_p tmp = inputImpl->getNextBuffer();
 

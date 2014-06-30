@@ -45,6 +45,6 @@ void testLoop()
 
 void TestLoop()
 {
-	testLoop();
+	//testLoop();
 	testMultiplex();
 }

@@ -1,7 +1,6 @@
 TEMPLATE = app
-CONFIG  += console c++11
-QT      = core testlib
-
+CONFIG += console c++11
+CONFIG -= qt
 SOURCES += main.cpp \
 #    testlsb.cpp \
 #    testssw.cpp \

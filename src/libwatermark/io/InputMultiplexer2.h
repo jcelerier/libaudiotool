@@ -50,6 +50,6 @@ class InputMultiplexer : public InputManagerBase<data_type>
 			initInputs(args...);
 		}
 
-		std::vector<Input_p> _inputs;
+		std::vector<Input_p> _inputs{};
 };
 

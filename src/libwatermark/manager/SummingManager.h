@@ -33,12 +33,12 @@ class SummingManager: public ManagerBase
 					buffer.reset(d);
 				}
 
-				for(int k = 0; k < bufferSize; ++k)
+				for(auto k = 0U; k < bufferSize; ++k)
 				{
-					for(int j = 0; j < channels; j++)
+					for(auto j = 0U; j < channels; j++)
 					{
 						data_type sample{};
-						for(int i = 0; i < numTracks; i++)
+						for(auto i = 0U; i < numTracks; i++)
 							sample += getAudio<data_type>(getMulti(buf)[i])[j][k];
 
 						getAudio<data_type>(buffer)[j][k] = sample / numTracks;
