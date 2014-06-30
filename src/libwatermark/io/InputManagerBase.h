@@ -55,7 +55,7 @@ class InputManagerBase : public IOManagerBase<data_type>, public InputManagerInt
 									  frames());
 				}
 
-				pos() += copyHandler->frameIncrement();
+				pos() += copyHandler->lastIncrement();
 				return buffer;
 			}
 

@@ -38,7 +38,6 @@ class LoopInputProxy : public InputManagerBase<data_type>
 
 				for(auto i = 0U; i < impl->channels(); ++i)
 				{
-					std::cerr << impl->copyHandler->lastIncrement() << std::endl;
 					std::copy(impl->v(i).begin(),
 							  impl->v(i).begin() + impl->copyHandler->frameIncrement() - impl->copyHandler->lastIncrement(),
 							  getAudio<data_type>(tmp)[i].begin() + impl->copyHandler->lastIncrement());

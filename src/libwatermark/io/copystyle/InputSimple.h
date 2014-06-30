@@ -44,9 +44,9 @@ class InputSimple: public InputCopy<data_type>
 			}
 			else
 			{
-				_lastIncrement = frameIncrement() - (big_vector_length - pos);
-				std::copy_n(in + pos, big_vector_length - pos, out);
-				std::fill_n(out + big_vector_length - pos, _lastIncrement, 0);
+				_lastIncrement = big_vector_length - pos;
+				std::copy_n(in + pos, _lastIncrement, out);
+				std::fill_n(out + big_vector_length - pos, frameIncrement() - _lastIncrement, 0);
 			}
 		}
 

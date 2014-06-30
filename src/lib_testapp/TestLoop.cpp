@@ -29,7 +29,7 @@ void testMultiplex()
 void testLoop()
 {
 	Parameters<double> conf;
-	auto input = Input_p(new LoopInputProxy<double>(Input_p(new FileInput<double>("input_sine.wav", conf)), conf));
+	auto input = Input_p(new LoopInputProxy<double>(Input_p(new FileInput<double>("input_ramp.wav", conf)), conf));
 
 	auto zeO = new FileOutput<double>(conf);
 	auto output = Output_p(zeO);
