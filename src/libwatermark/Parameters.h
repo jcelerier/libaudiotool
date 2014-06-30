@@ -32,16 +32,16 @@ struct Parameters
 		using size_type = long unsigned int; /**< A utiliser pour les longueurs de tableau, etc. */
 		using complex_type = std::complex<data_type>; /**< A utiliser pour les nombres complexes. */
 
-		size_type samplingRate = 44100U; /**< Fréquence d'échantillonnage. */
-		size_type bufferSize = 512U; /**< Taille de buffer. */
+		size_type samplingRate{44100U}; /**< Fréquence d'échantillonnage. */
+		size_type bufferSize{512U}; /**< Taille de buffer. */
 
 		/**
 		 * @brief normFactor Facteur de normalisation
 		 * @return La valeur d'une sample maximale pour le type choisi.
 		 *
 		 * Exemple : si on travaille en doubles ça renvoie 1, en shorts 32768, etc..
-         */
-        data_type normFactor()
+		 */
+		data_type normFactor()
 		{
 			if(typeid(data_type) == typeid(double))
 				return 1.0;

@@ -33,8 +33,7 @@ class FileInput : public InputManagerBase<data_type>
 
 			this->conf.samplingRate = myf.samplerate();
 
-			std::vector<data_type> vec;
-			vec.resize(myf.frames() * myf.channels());
+			std::vector<data_type> vec(myf.frames() * myf.channels());
 
 			int parity = (myf.frames() % 2 != 0) ? -1 : 0;
 			for(int i = 0; i < myf.channels(); ++i)

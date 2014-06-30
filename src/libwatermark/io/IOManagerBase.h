@@ -27,10 +27,9 @@ class IOManagerBase : public IOInterface
 		std::vector<std::vector<data_type>> _baseData = {};
 		size_type _pos = 0;
 
-	protected:
-		Parameters<data_type>& conf;
 
 	public:
+		Parameters<data_type>& conf;
 		friend class FFTInputProxy<data_type>;
 		friend class FFTOutputProxy<data_type>;
 
@@ -45,7 +44,7 @@ class IOManagerBase : public IOInterface
 		 * @brief v Accès au vecteur sous-jacent
 		 * @return  Vecteur sous-j	xznr
 		 */
-        virtual std::vector<std::vector<data_type> >& v()
+		virtual std::vector<std::vector<data_type> >& v()
 		{
 			return _baseData;
 		}

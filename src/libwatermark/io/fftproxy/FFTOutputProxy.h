@@ -53,13 +53,7 @@ class FFTOutputProxy : public FFTProxy<data_type>, public OutputManagerBase<data
 			// 2. Normalize
 			if(dynamic_cast<IOManagerBase<data_type>*>(outputImpl.get())->pos() == 0) // Premier buffer
 			{
-				auto d = new CData<data_type>;
-
-				d->_data.resize(fft->output().size());
-				for(auto& channel : d->_data)
-					channel.resize(fft->output()[0].size());
-
-				outbuff.reset(d);
+				outbuff.reset(new CData<data_type>{fft->output().size(), fft->output()[0].size()});
 			}
 
 			for(auto i = 0U; i < fft->output().size(); ++i)

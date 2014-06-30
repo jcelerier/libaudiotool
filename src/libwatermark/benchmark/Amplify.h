@@ -38,5 +38,5 @@ class Amplify : public BenchmarkBase<data_type>, public AmplitudeProperty
 		}
 
 	private:
-		double _amplitude = 0.5;
+		volatile double _amplitude{1.0};
 };

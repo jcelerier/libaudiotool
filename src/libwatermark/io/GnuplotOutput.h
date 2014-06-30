@@ -40,7 +40,7 @@ class GnuplotOutput:public OutputManagerBase<data_type>
 
 		virtual void writeNextBuffer(Audio_p& data) override
 		{
-			auto& buffer = getAudio<data_type>(data);
+			auto& buffer{getAudio<data_type>(data)};
 
 			for(auto& channel : buffer)
 			{

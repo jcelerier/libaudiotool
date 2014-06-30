@@ -35,5 +35,5 @@ class BenchmarkManager: public ManagerBase
 		}
 
 	private:
-		Benchmark_p algorithm = nullptr;
+		Benchmark_p algorithm{};
 };

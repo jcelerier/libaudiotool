@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "InputManagerBase.h"
-
+blbl
 template <typename data_type>
 /**
  * @brief The InputManagerBase class

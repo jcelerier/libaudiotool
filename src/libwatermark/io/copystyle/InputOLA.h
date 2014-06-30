@@ -32,6 +32,11 @@ class InputOLA : public InputCopy<data_type>
 			return this->conf.bufferSize - zeroPaddedSamples;
 		}
 
+		virtual typename CopyStyle<data_type>::size_type lastIncrement() override
+		{
+			return frameIncrement();
+		}
+
 		virtual void copy(typename std::vector<data_type>::const_iterator in,
 						  typename std::vector<data_type>::iterator out,
 						  typename CopyStyle<data_type>::size_type pos,

@@ -37,6 +37,21 @@ template<typename T>
  */
 struct CData : public IData
 {
+	CData(std::vector<std::vector<T>>&& vec):
+		_data(std::move(vec))
+	{
+	}
+
+	CData(typename std::vector<std::vector<T>>::size_type channels):
+		_data{channels}
+	{
+	}
+
+	CData(typename std::vector<std::vector<T>>::size_type channels, typename std::vector<T>::size_type size):
+		_data{channels, std::vector<T>(size)}
+	{
+	}
+
 	std::vector<std::vector<T>> _data = {};
 };
 

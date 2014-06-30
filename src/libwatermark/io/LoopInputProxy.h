@@ -13,10 +13,17 @@ class LoopInputProxy : public InputManagerBase<data_type>
 		Input_p inputImpl = nullptr;
 
 	public:
-		LoopInputProxy(Input_p input,
-					   Parameters<data_type>& cfg):
-			InputManagerBase<data_type>(nullptr, cfg),
-			inputImpl(input)
+		LoopInputProxy(Input_p input):
+			InputManagerBase<data_type>(nullptr,
+										static_cast<InputManagerBase<data_type>*>(input.get())->conf),
+			inputImpl{input}
+		{
+		}
+
+		LoopInputProxy(InputManagerBase<data_type>* input):
+			InputManagerBase<data_type>(nullptr,
+										input->conf),
+			inputImpl{input}
 		{
 		}
 

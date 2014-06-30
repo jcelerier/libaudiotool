@@ -39,7 +39,7 @@ class GnuplotFFTOutput:public OutputManagerBase<data_type>
 
 		virtual void writeNextBuffer(Audio_p& data) override
 		{
-			auto& buffer = getSpectrum<data_type>(data);
+			auto& buffer{getSpectrum<data_type>(data)};
 
 			for(auto& channel : buffer)
 			{

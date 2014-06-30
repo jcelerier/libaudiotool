@@ -35,13 +35,7 @@ class InputManagerBase : public IOManagerBase<data_type>, public InputManagerInt
 			if(pos() == 0 && firstRun) // Premier buffer
 			{
 				firstRun = false;
-				auto d = new CData<data_type>;
-
-				d->_data.resize(channels());
-				for(auto& channel : d->_data)
-					channel.resize(this->conf.bufferSize);
-
-				buffer.reset(d);
+				buffer.reset(new CData<data_type>(channels(), this->conf.bufferSize));
 			}
 
 			if(pos() < frames())

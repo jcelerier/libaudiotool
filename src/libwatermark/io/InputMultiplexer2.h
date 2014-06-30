@@ -46,7 +46,7 @@ class InputMultiplexer : public InputManagerBase<data_type>
 		template<typename Input, typename... I>
 		void initInputs(Input&& i, I&&... args)
 		{
-			_inputs.push_back(i);
+			_inputs.emplace_back(i);
 			initInputs(args...);
 		}
 

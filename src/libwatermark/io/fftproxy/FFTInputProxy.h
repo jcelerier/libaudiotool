@@ -76,12 +76,10 @@ class FFTInputProxy : public FFTProxy<data_type>, public InputManagerBase<data_t
 			fft->forward();
 
 			// 4. On crée un autre buffer pour le spectre
-			auto outbuff = new CData<complex_type>;
+			// TODO mettre en cache
+			auto outbuff = new CData<complex_type>{std::move(fft->spectrum())};
 
-			// 5. On move fft.spectrum
-			outbuff->_data = std::move(fft->spectrum());
-
-			// 6. On retourne
+			// 5. On retourne
 			return Audio_p(outbuff);
 		}
 };

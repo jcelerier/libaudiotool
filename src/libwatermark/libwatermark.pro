@@ -86,5 +86,9 @@ HEADERS += \
     benchmark/properties/FFTProperty.h \
     io/LoopInputProxy.h \
     io/InputMultiplexer2.h \
-    manager/SummingManager.h
+    manager/SummingManager.h \
+    benchmark/Sequence.h \
+    benchmark/Pan.h \
+    io/SfxInputProxy.h \
+    io/StereoAdapter.h
 

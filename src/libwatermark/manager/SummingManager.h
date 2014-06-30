@@ -24,13 +24,7 @@ class SummingManager: public ManagerBase
 				if(firstRun)
 				{
 					firstRun = false;
-
-					auto d = new CData<data_type>;
-					d->_data.resize(channels);
-					for(auto& channel : d->_data)
-						channel.resize(bufferSize);
-
-					buffer.reset(d);
+					buffer.reset(new CData<data_type>{channels, bufferSize});
 				}
 
 				for(auto k = 0U; k < bufferSize; ++k)
