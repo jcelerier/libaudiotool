@@ -8,6 +8,7 @@
 #endif
 #define ENABLE_AUDIO
 
+#include <QDebug>
 #include <QBuffer>
 class AudioManager : public QObject
 {
@@ -28,12 +29,11 @@ class AudioManager : public QObject
 			format.setByteOrder(QAudioFormat::LittleEndian);
 			format.setSampleType(QAudioFormat::SignedInt);
 
-			QDataStream stream(audioBuffer);
-			stream.setByteOrder(QDataStream::LittleEndian);
-
 			audioBuffer->seek(0);
 
+
 			audioOut = new QAudioOutput(format, this);
+
 		}
 
 		void writeAudio(short* ext_buffer, unsigned int len)
@@ -42,6 +42,7 @@ class AudioManager : public QObject
 
 			if(audioOut->state() != QAudio::ActiveState)
 				play();
+			qDebug() << audioOut->periodSize();
 		}
 
 		void play()

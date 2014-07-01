@@ -33,7 +33,7 @@ struct Parameters
 		using complex_type = std::complex<data_type>; /**< A utiliser pour les nombres complexes. */
 
 		size_type samplingRate{44100U}; /**< Fréquence d'échantillonnage. */
-		size_type bufferSize{512U}; /**< Taille de buffer. */
+		size_type bufferSize{1024U}; /**< Taille de buffer. */
 
 		/**
 		 * @brief normFactor Facteur de normalisation

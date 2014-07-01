@@ -21,8 +21,8 @@ void testMultiplex()
 	Parameters<double> conf;
 
 
-	auto stereo_loop_file1 = new StereoAdapter<double>(new LoopInputProxy<double>(new FileInput<double>("input_mono.wav", conf)));
-	auto stereo_loop_file2 = new StereoAdapter<double>(new LoopInputProxy<double>(new FileInput<double>("input_sfx_mono.wav", conf)));
+	auto stereo_loop_file1 = new StereoAdapter<double>(new LoopInputProxy<double>(new FileInput<double>("beat1.wav", conf)));
+	auto stereo_loop_file2 = new StereoAdapter<double>(new LoopInputProxy<double>(new FileInput<double>("beat2.wav", conf)));
 
 	auto pan1 = new Pan<double>(conf);
 	auto pan2 = new Pan<double>(conf);
@@ -44,10 +44,10 @@ void testMultiplex()
 																			fxchannel2)));
 
 
-	auto zeO = new QtAudioOutput<double>(conf);
-	auto output = Output_p(zeO);
+	//auto zeO = new QtAudioOutput<double>(conf);
+	//auto output = Output_p(zeO);
 
-	SummingManager<double> manager(std::move(input), std::move(output));
+	SummingManager<double> manager(std::move(input), Output_p());
 
 	manager.execute();
 
