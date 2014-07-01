@@ -14,6 +14,8 @@
 #include <benchmark/Amplify.h>
 #include <benchmark/Sequence.h>
 
+#include <io/audio/QtAudioOutput.h>
+
 void testMultiplex()
 {
 	Parameters<double> conf;
@@ -42,14 +44,14 @@ void testMultiplex()
 																			fxchannel2)));
 
 
-	auto zeO = new FileOutput<double>(conf);
+	auto zeO = new QtAudioOutput<double>(conf);
 	auto output = Output_p(zeO);
 
 	SummingManager<double> manager(std::move(input), std::move(output));
 
 	manager.execute();
 
-	zeO->writeFile("output_loop_sum.wav");
+	//zeO->writeFile("output_loop_sum.wav");
 }
 
 void testLoop()

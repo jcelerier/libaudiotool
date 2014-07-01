@@ -1,6 +1,6 @@
 TEMPLATE = app
 CONFIG += console c++11
-QT += core testlib
+QT += core testlib multimedia
 
 SOURCES += main.cpp \
 #	testlsb.cpp \
@@ -35,13 +35,11 @@ QMAKE_CXXFLAGS += -std=c++11
 
 INCLUDEPATH += $$PWD/../libwatermark
 DEPENDPATH += $$PWD/../libwatermark
-macx {
- LIBS += -L/usr/local/Cellar/libsndfile/1.0.25/lib/ -L/usr/local/Cellar/fftw/3.3.3/lib/
-}
+
 LIBS+=-lsndfile -lfftw3 -lgcov
 
-OTHER_FILES += \
-	Vieux_tests.txt
 
 HEADERS += \
-	TestHeader.h
+	TestHeader.h \
+	../libwatermark/io/audio/audiomanager.h \
+	../libwatermark/io/audio/audiomanagerthread.h
