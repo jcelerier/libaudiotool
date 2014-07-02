@@ -25,6 +25,11 @@ class StreamingManager: public ManagerBase
 			float **out = static_cast<float **>(outputBuffer);
 
 			Audio_p buffer = m_input->getNextBuffer();
+			if(!buffer)
+			{
+				static_cast<StreamingOutputInterface<data_type>*>(output().get())->stopStream();
+				return 1;
+			}
 			auto audio = getAudio<data_type>(buffer); // Should be stereo.
 
 			std::copy(audio[0].begin(),

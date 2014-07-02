@@ -91,6 +91,6 @@ void testStream()
 void TestLoop()
 {
 	//testLoop();
-	testMultiplex();
-	//testStream();
+	//testMultiplex();
+	testStream();
 }
