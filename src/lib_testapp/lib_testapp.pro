@@ -1,6 +1,6 @@
 TEMPLATE = app
 CONFIG += console c++11
-QT += core testlib multimedia
+QT += core testlib
 
 SOURCES += main.cpp \
 #	testlsb.cpp \
