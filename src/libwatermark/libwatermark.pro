@@ -93,5 +93,9 @@ HEADERS += \
 	io/StereoAdapter.h \
 	io/audio/audiomanager.h \
     io/audio/QtAudioOutput.h \
-    io/audio/audiomanagerthread.h
+    io/audio/audiomanagerthread.h \
+    stream_io/PortaudioOutput.h \
+    manager/StreamingManager.h \
+    io/SummationProxy.h \
+    stream_io/StreamingOutputInterface.h
 

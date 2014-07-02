@@ -4,6 +4,11 @@
 #include "IOManagerBase.h"
 #include "copystyle/OutputSimple.h"
 
+
+
+
+
+
 template <typename data_type>
 /**
  * @brief The OutputManagerBase class
