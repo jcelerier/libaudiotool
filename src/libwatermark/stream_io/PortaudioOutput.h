@@ -22,8 +22,8 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 																											false,
 																											System::instance().defaultOutputDevice().defaultLowOutputLatency(),
 																											NULL),
-																		  this->conf.samplingRate,
-																		  this->conf.bufferSize,
+																		  44100,
+																		  1024,
 																		  paClipOff), *this, &PortaudioOutput::generate);
 			stream.start();
 			isRunning = true;

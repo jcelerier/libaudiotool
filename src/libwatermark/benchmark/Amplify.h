@@ -5,6 +5,7 @@
 #include "BenchmarkBase.h"
 
 #include "properties/Amplitude.h"
+#include "../mathutils/math_util.h"
 
 template <typename data_type>
 class Amplify : public BenchmarkBase<data_type>, public AmplitudeProperty
