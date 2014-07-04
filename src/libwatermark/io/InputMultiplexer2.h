@@ -20,6 +20,12 @@ class InputMultiplexer : public InputManagerBase<data_type>
 			initInputs(inputs...);
 		}
 
+		InputMultiplexer(Parameters<data_type>& cfg, std::vector<Input_p> vec):
+			InputManagerBase<data_type>(cfg),
+			_inputs(vec)
+		{
+		}
+
 		InputMultiplexer(const InputMultiplexer<data_type>& orig) = delete;
 
 		virtual ~InputMultiplexer() = default;

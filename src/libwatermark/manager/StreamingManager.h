@@ -47,6 +47,14 @@ class StreamingManager: public ManagerBase
 			static_cast<StreamingOutputInterface<data_type>*>(output().get())->startStream(std::bind(&StreamingManager::generate, this, std::placeholders::_1));
 		}
 
+		void stop()
+		{
+			// Remettre les positions à 0;
+
+			// Stop
+			static_cast<StreamingOutputInterface<data_type>*>(output().get())->stopStream();
+		}
+
 	private:
 		Parameters<data_type>& conf;
 };

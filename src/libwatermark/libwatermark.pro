@@ -96,5 +96,6 @@ HEADERS += \
     stream_io/PortaudioOutput.h \
     manager/StreamingManager.h \
     io/SummationProxy.h \
-    stream_io/StreamingOutputInterface.h
+    stream_io/StreamingOutputInterface.h \
+    io/FFMPEGFileInput.h
 

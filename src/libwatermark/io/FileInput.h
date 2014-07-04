@@ -27,7 +27,7 @@ class FileInput : public InputManagerBase<data_type>
 			readFile(filename);
 		}
 
-		void readFile(std::string& str)
+		virtual void readFile(std::string& str)
 		{
 			auto myf = SndfileHandle(str);
 
@@ -40,5 +40,8 @@ class FileInput : public InputManagerBase<data_type>
 				myf.read(vec.data() + i * (myf.frames() + parity),  myf.frames() + parity);
 
 			this->v() = MathUtil::deinterleave(vec, (unsigned int) myf.channels(), (unsigned int) myf.frames());
+
+			std::cerr << "Filename: " << str << std::endl;
+			std::cerr << "Channels: " << this->v().size() << std::endl;
 		}
 };

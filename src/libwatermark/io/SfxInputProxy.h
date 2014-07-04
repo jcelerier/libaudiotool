@@ -23,6 +23,13 @@ class SfxInputProxy : public InputManagerBase<data_type>
 			_input{input}
 		{
 		}
+		SfxInputProxy(InputManagerBase<data_type>* input,
+					  BenchmarkBase<data_type>* algo):
+			InputManagerBase<data_type>(input->conf),
+			_algorithm{algo},
+			_input{input}
+		{
+		}
 
 		SfxInputProxy(const SfxInputProxy<data_type>& orig) = delete;
 		virtual ~SfxInputProxy() = default;
