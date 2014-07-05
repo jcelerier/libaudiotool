@@ -34,7 +34,6 @@ class FFMPEGFileInput : public FileInput<data_type>
 				<< str
 				<< ".wav\"";
 
-			std::cerr << cmd.str() << std::endl;
 			system(cmd.str().c_str());
 
 			FileInput<data_type>::readFile(str.append(".wav"));

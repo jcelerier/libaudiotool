@@ -12,20 +12,20 @@ class SummationProxy : public InputManagerBase<data_type>
 		using InputManagerBase<data_type>::frames;
 
 	private:
-		Input_p inputImpl = nullptr;
+		Input_p _inputImpl = nullptr;
 
 	public:
 		SummationProxy(Input_p input):
 			InputManagerBase<data_type>(nullptr,
 										static_cast<InputManagerBase<data_type>*>(input.get())->conf),
-			inputImpl{input}
+			_inputImpl{input}
 		{
 		}
 
 		SummationProxy(InputManagerBase<data_type>* input):
 			InputManagerBase<data_type>(nullptr,
 										input->conf),
-			inputImpl{input}
+			_inputImpl{input}
 		{
 		}
 
@@ -33,7 +33,7 @@ class SummationProxy : public InputManagerBase<data_type>
 
 		virtual Audio_p getNextBuffer() final override
 		{
-			Audio_p buf = inputImpl->getNextBuffer();
+			Audio_p buf = _inputImpl->getNextBuffer();
 
 			auto numTracks = getMulti(buf).size();
 			auto numChannels = getAudio<data_type>(getMulti(buf)[0]).size();
@@ -60,6 +60,10 @@ class SummationProxy : public InputManagerBase<data_type>
 			return buffer;
 		}
 
+		virtual void reset() override
+		{
+			_inputImpl->reset();
+		}
 
 	private:
 		Audio_p buffer{nullptr};

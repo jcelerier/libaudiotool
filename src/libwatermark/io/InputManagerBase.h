@@ -18,6 +18,9 @@ class InputManagerBase : public IOManagerBase<data_type>, public InputManagerInt
 		using IOManagerBase<data_type>::channels;
 		using IOManagerBase<data_type>::frames;
 
+		using IOManagerBase<data_type>::reset;
+
+
 		using IOManagerBase<data_type>::IOManagerBase;
 
 		InputManagerBase(InputCopy<data_type>* copy, Parameters<data_type>& cfg):
@@ -54,6 +57,11 @@ class InputManagerBase : public IOManagerBase<data_type>, public InputManagerInt
 			}
 
 			return Audio_p(nullptr);
+		}
+
+		virtual void reset()
+		{
+			pos() = 0;
 		}
 
 		InputCopy_p<data_type> copyHandler{InputCopy_p<data_type>(new InputSimple<data_type>(this->conf))};

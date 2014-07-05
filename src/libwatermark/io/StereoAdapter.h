@@ -11,13 +11,13 @@ class StereoAdapter : public InputManagerBase<data_type>
 	public:
 		StereoAdapter(Input_p input):
 			InputManagerBase<data_type>(static_cast<InputManagerBase<data_type>*>(input.get())->conf),
-			_input{input}
+			_inputImpl{input}
 		{
 		}
 
 		StereoAdapter(InputManagerBase<data_type>* input):
 			InputManagerBase<data_type>(input->conf),
-			_input{input}
+			_inputImpl{input}
 		{
 		}
 
@@ -26,7 +26,7 @@ class StereoAdapter : public InputManagerBase<data_type>
 
 		virtual Audio_p getNextBuffer() override
 		{
-			Audio_p buf = _input->getNextBuffer();
+			Audio_p buf = _inputImpl->getNextBuffer();
 			if(!buf) return buf;
 
 			auto& tracks = getAudio<data_type>(buf);
@@ -61,9 +61,14 @@ class StereoAdapter : public InputManagerBase<data_type>
 			}
 		}
 
+		virtual void reset() override
+		{
+			static_cast<InputManagerBase<data_type>*>(_inputImpl.get())->reset();
+		}
+
 	private:
 		Audio_p _stereoBuffer{};
 		bool firstRun{true};
-		Input_p _input{};
+		Input_p _inputImpl{};
 };
 

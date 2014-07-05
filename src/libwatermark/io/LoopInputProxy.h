@@ -55,4 +55,9 @@ class LoopInputProxy : public InputManagerBase<data_type>
 
 			return tmp;
 		}
+
+		virtual void reset() override
+		{
+			static_cast<InputManagerBase<data_type>*>(inputImpl.get())->reset();
+		}
 };

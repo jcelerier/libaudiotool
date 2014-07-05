@@ -46,6 +46,11 @@ class InputMultiplexer : public InputManagerBase<data_type>
 			return Audio_p(out);
 		}
 
+		virtual void reset() override
+		{
+			for(auto inputImpl : _inputs )
+				inputImpl->reset();
+		}
 	private:
 		void initInputs(){} // Fin de récurrence
 

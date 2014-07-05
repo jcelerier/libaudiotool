@@ -6,6 +6,8 @@ class IOInterface
 		virtual ~IOInterface() = default;
 		virtual long unsigned int channels() = 0;
 		virtual long unsigned int frames() = 0;
+
+
 };
 
 class InputManagerInterface
@@ -13,7 +15,9 @@ class InputManagerInterface
 	public:
 		virtual ~InputManagerInterface() = default;
 		virtual Audio_p getNextBuffer() = 0;
+		virtual void reset() = 0;
 };
+
 
 using Input_p = std::shared_ptr<InputManagerInterface>;
 

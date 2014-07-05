@@ -82,7 +82,7 @@ class IOManagerBase : public IOInterface
 			return _pos;
 		}
 
-		void reset()
+		virtual void reset()
 		{
 			_pos = 0;
 		}
