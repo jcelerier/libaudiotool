@@ -97,5 +97,6 @@ HEADERS += \
     manager/StreamingManager.h \
     io/SummationProxy.h \
     stream_io/StreamingOutputInterface.h \
-    io/FFMPEGFileInput.h
+    io/FFMPEGFileInput.h \
+    benchmark/Mute.h
 
