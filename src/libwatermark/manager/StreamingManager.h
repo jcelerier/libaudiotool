@@ -14,9 +14,11 @@ class StreamingManager: public ManagerBase
 	public:
 		StreamingManager(Input_p i,
 						 std::shared_ptr<StreamingOutputInterface<data_type>> o,
+						 std::function<void ()> h,
 						 Parameters<data_type> cfg):
 			ManagerBase(i, o),
-			conf{cfg}
+			conf{cfg},
+			timeHandle{h}
 		{
 		}
 
@@ -39,6 +41,8 @@ class StreamingManager: public ManagerBase
 					  audio[1].end(),
 					  out[1]);
 
+			timeHandle();
+
 			return 0;
 		}
 
@@ -57,4 +61,5 @@ class StreamingManager: public ManagerBase
 
 	private:
 		Parameters<data_type>& conf;
+		std::function<void ()> timeHandle;
 };

@@ -38,20 +38,18 @@ class LoopInputProxy : public InputManagerBase<data_type>
 			// General case
 			if(impl->pos() < impl->frames()) return tmp;
 
-			//if(loop_count-- > 0)
+			// If we have to loop
+			impl->reset();
+
+			for(auto i = 0U; i < impl->channels(); ++i)
 			{
-				// If we have to loop
-				impl->reset();
+				std::copy(impl->v(i).begin(),
+						  impl->v(i).begin() + impl->copyHandler->frameIncrement() - impl->copyHandler->lastIncrement(),
+						  getAudio<data_type>(tmp)[i].begin() + impl->copyHandler->lastIncrement());
 
-				for(auto i = 0U; i < impl->channels(); ++i)
-				{
-					std::copy(impl->v(i).begin(),
-							  impl->v(i).begin() + impl->copyHandler->frameIncrement() - impl->copyHandler->lastIncrement(),
-							  getAudio<data_type>(tmp)[i].begin() + impl->copyHandler->lastIncrement());
-
-					impl->pos() += impl->copyHandler->frameIncrement() - impl->copyHandler->lastIncrement();
-				}
+				impl->pos() += impl->copyHandler->frameIncrement() - impl->copyHandler->lastIncrement();
 			}
+
 
 			return tmp;
 		}

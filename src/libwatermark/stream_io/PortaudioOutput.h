@@ -15,16 +15,17 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 			_handler = handle;
 			AutoSystem autoSys;
 
-			MemFunCallbackStream<PortaudioOutput> stream(StreamParameters(DirectionSpecificStreamParameters::null(),
-																		  DirectionSpecificStreamParameters(System::instance().defaultOutputDevice(),
-																											2,
-																											FLOAT32,
-																											false,
-																											System::instance().defaultOutputDevice().defaultLowOutputLatency(),
-																											NULL),
-																		  44100,
-																		  1024,
-																		  paClipOff), *this, &PortaudioOutput::generate);
+			MemFunCallbackStream<PortaudioOutput> stream(
+						StreamParameters(DirectionSpecificStreamParameters::null(),
+										 DirectionSpecificStreamParameters(System::instance().defaultOutputDevice(),
+																		   2,
+																		   FLOAT32,
+																		   false,
+																		   System::instance().defaultOutputDevice().defaultLowOutputLatency(),
+																		   NULL),
+										 this->conf.samplingRate,
+										 this->conf.bufferSize,
+										 paClipOff), *this, &PortaudioOutput::generate);
 			stream.start();
 			isRunning = true;
 
@@ -45,9 +46,13 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 		}
 
 	private:
-		int generate(const void *inputBuffer, void *outputBuffer, unsigned long framesPerBuffer,
-			const PaStreamCallbackTimeInfo *timeInfo, PaStreamCallbackFlags statusFlags)
+		int generate(const void *, void *outputBuffer, unsigned long framesPerBuffer,
+					 const PaStreamCallbackTimeInfo *, PaStreamCallbackFlags )
 		{
+			if(framesPerBuffer < this->conf.bufferSize)
+			{
+				std::cerr << "[WARNING] Buffer underrun.";
+			}
 			return _handler(outputBuffer);
 		}
 
