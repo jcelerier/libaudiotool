@@ -28,13 +28,15 @@ class FFMPEGFileInput : public FileInput<data_type>
 
 		virtual void readFile(std::string &str) override
 		{
-			this->v().resize(2);
-			auto vec = decode(str);
-			this->v(0).resize(vec[0].size());
-			this->v(1).resize(vec[1].size());
+			int sr;
+			int nchans;
+			auto vec = decode(str, sr, nchans);
+			this->conf.samplingRate = sr;
 
-			for(int i = 0; i < 2; i++)
+			this->v().resize(nchans);
+			for(int i = 0; i < nchans; i++)
 			{
+				this->v(i).resize(vec[i].size());
 				std::transform(vec[i].begin(),
 							   vec[i].end(),
 							   this->v(i).begin(),

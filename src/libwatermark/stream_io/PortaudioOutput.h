@@ -9,23 +9,31 @@ template<typename data_type>
 class PortaudioOutput : public StreamingOutputInterface<data_type>
 {
 	public:
-		using StreamingOutputInterface<data_type>::StreamingOutputInterface;
+		PortaudioOutput(Parameters<data_type>& cfg):
+			StreamingOutputInterface<data_type>(cfg),
+			stream(StreamParameters(DirectionSpecificStreamParameters::null(),
+									DirectionSpecificStreamParameters(System::instance().defaultOutputDevice(),
+																	  2,
+																	  FLOAT32,
+																	  false,
+																	  System::instance().defaultOutputDevice().defaultLowOutputLatency(),
+																	  NULL),
+									this->conf.samplingRate,
+									this->conf.bufferSize,
+									paClipOff), *this, &PortaudioOutput::generate)
+		{
+		}
+
+		~PortaudioOutput()
+		{
+			stream.close();
+			System::instance().terminate();
+		}
+
 		virtual void startStream(typename StreamingOutputInterface<data_type>::output_handler handle) override
 		{
 			_handler = handle;
-			AutoSystem autoSys;
 
-			MemFunCallbackStream<PortaudioOutput> stream(
-						StreamParameters(DirectionSpecificStreamParameters::null(),
-										 DirectionSpecificStreamParameters(System::instance().defaultOutputDevice(),
-																		   2,
-																		   FLOAT32,
-																		   false,
-																		   System::instance().defaultOutputDevice().defaultLowOutputLatency(),
-																		   NULL),
-										 this->conf.samplingRate,
-										 this->conf.bufferSize,
-										 paClipOff), *this, &PortaudioOutput::generate);
 			stream.start();
 			isRunning = true;
 
@@ -34,15 +42,17 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 				System::instance().sleep(200);
 			}
 
-			stream.stop();
-			stream.close();
-
-			System::instance().terminate();
+			if(!stream.isStopped())
+			{
+				stream.stop();
+			}
 		}
 
 		virtual void stopStream()
 		{
 			isRunning = false;
+
+			stream.stop();
 		}
 
 	private:
@@ -58,4 +68,6 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 
 		bool isRunning{false};
 		typename StreamingOutputInterface<data_type>::output_handler _handler;
+		AutoSystem sys;
+		MemFunCallbackStream<PortaudioOutput> stream;
 };

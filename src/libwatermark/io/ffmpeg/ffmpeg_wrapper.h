@@ -45,7 +45,7 @@ void printAudioFrameInfo(const AVCodecContext* codecContext, const AVFrame* fram
 	}
 }
 
-std::vector<std::vector<int16_t>> decode(std::string& filename)
+std::vector<std::vector<int16_t>> decode(std::string& filename, int& sampleRate, int& channels)
 {
 	std::vector<std::vector<int16_t>> vec(2);
 	// Initialize FFmpeg
@@ -84,6 +84,8 @@ std::vector<std::vector<int16_t>> decode(std::string& filename)
 	AVStream* audioStream = formatContext->streams[streamIndex];
 	AVCodecContext* codecContext = audioStream->codec;
 	codecContext->codec = cdc;
+	sampleRate = codecContext->sample_rate;
+	channels = codecContext->channels;
 
 	if (avcodec_open2(codecContext, codecContext->codec, NULL) != 0)
 	{
