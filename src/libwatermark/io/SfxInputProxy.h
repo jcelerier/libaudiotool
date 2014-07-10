@@ -40,7 +40,7 @@ class SfxInputProxy : public InputManagerBase<data_type>
 
 			if(buf) (*_algorithm)(buf);
 
-			return  buf;
+			return buf;
 		}
 
 		virtual void reset() override

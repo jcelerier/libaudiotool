@@ -45,17 +45,26 @@ class SummationProxy : public InputManagerBase<data_type>
 				buffer.reset(new CData<data_type>{numChannels, bufferSize});
 			}
 
+			auto& audio = getAudio<data_type>(buffer);
+
+			// TODO Optimize
+			for(auto j = 0U; j < numChannels; j++)
+				for(auto k = 0U; k < bufferSize; k++)
+					audio[j][k] = 0;
+
 			for(auto k = 0U; k < bufferSize; ++k)
 			{
 				for(auto j = 0U; j < numChannels; j++)
 				{
-					data_type sample{};
 					for(auto i = 0U; i < numTracks; i++)
-						sample += getAudio<data_type>(getMulti(buf)[i])[j][k];
-
-					getAudio<data_type>(buffer)[j][k] = sample / numTracks;
+						audio[j][k] += getAudio<data_type>(getMulti(buf)[i])[j][k];
 				}
 			}
+
+			// TODO Optimize
+			for(auto j = 0U; j < numChannels; j++)
+				for(auto k = 0U; k < bufferSize; k++)
+					audio[j][k] /= numTracks;
 
 			return buffer;
 		}
