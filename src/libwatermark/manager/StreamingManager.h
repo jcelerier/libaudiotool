@@ -17,8 +17,8 @@ class StreamingManager: public ManagerBase
 						 std::function<void ()> h,
 						 Parameters<data_type> cfg):
 			ManagerBase(i, o),
-			conf{cfg},
-			timeHandle{h}
+			conf(cfg),
+			timeHandle(h)
 		{
 		}
 
