@@ -51,7 +51,7 @@ std::vector<std::vector<int16_t>> decode(std::string& filename, int& sampleRate,
 	// Initialize FFmpeg
 	av_register_all();
 
-	AVFrame* frame = av_frame_alloc();
+	AVFrame* frame = avcodec_alloc_frame();
 	if (!frame)
 	{
 		std::cerr << "Error allocating the frame" << std::endl;
