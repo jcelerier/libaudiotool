@@ -33,16 +33,33 @@ class InputMultiplexer : public InputManagerBase<data_type>
 		virtual Audio_p getNextBuffer() override
 		{
 			auto out = new MultiData;
+			out->_data.resize(_inputs.size());
+			bool abort{false};
+
+			#pragma omp parallel for
 			for(auto i = 0U; i < _inputs.size(); ++i)
 			{
-				out->_data.push_back(_inputs[i]->getNextBuffer());
-				if(!out->_data[i])
+				#pragma omp flush (abort)
+				if(!abort)
 				{
-					delete out;
-					return Audio_p(nullptr);
+					out->_data[i] = _inputs[i]->getNextBuffer();
+
+					#pragma omp critical
+					{
+						if(!out->_data[i])
+						{
+							abort = true;
+							#pragma omp flush (abort)
+						}
+					}
 				}
 			}
 
+			if(abort)
+			{
+				delete out;
+				out = nullptr;
+			}
 			return Audio_p(out);
 		}
 
