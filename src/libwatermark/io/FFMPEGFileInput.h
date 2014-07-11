@@ -1,9 +1,12 @@
 #pragma once
-#include <unistd.h>
-#include "FileInput.h"
+#include "InputManagerBase.h"
 #include "../mathutils/math_util.h"
 #include <sstream>
 #include "ffmpeg/ffmpeg_wrapper.h"
+
+// For system:
+// #include <unistd.h>
+
 
 template <typename data_type>
 /**
@@ -11,22 +14,22 @@ template <typename data_type>
  *
  * Convertit un fichier à l'aide de FFMPEG
  */
-class FFMPEGFileInput : public FileInput<data_type>
+class FFMPEGFileInput : public InputManagerBase<data_type>
 {
 	public:
 		FFMPEGFileInput(std::string filename, Parameters<data_type>& cfg):
-			FileInput<data_type>(cfg)
+			InputManagerBase<data_type>(cfg)
 		{
 			readFile(filename);
 		}
 
 		FFMPEGFileInput(std::string filename, InputCopy<data_type>* icp, Parameters<data_type>& cfg):
-			FileInput<data_type>(icp, cfg)
+			InputManagerBase<data_type>(icp, cfg)
 		{
 			readFile(filename);
 		}
 
-		virtual void readFile(std::string &str) override
+		virtual void readFile(std::string &str)
 		{
 			int sr;
 			int nchans;
@@ -44,6 +47,7 @@ class FFMPEGFileInput : public FileInput<data_type>
 			}
 		}
 
+		/*
 		virtual void readFileFromSystem(std::string& str)
 		{
 			std::stringstream cmd;
@@ -57,4 +61,5 @@ class FFMPEGFileInput : public FileInput<data_type>
 
 			FileInput<data_type>::readFile(str.append(".wav"));
 		}
+		*/
 };
