@@ -23,20 +23,14 @@ IntegerType bitsToInt(const unsigned char* bits, bool little_endian = true )
 
 void printAudioFrameInfo(const AVCodecContext* codecContext, const AVFrame* frame, std::vector<std::vector<int16_t>>& vec)
 {
-	if (codecContext->channels > AV_NUM_DATA_POINTERS && av_sample_fmt_is_planar(codecContext->sample_fmt))
+	if(av_sample_fmt_is_planar(codecContext->sample_fmt))
 	{
-		// Copy from frame->extended_data. Doesn't need deinterlacing.
-		std::cerr << "TODO (case > 8 channels)";
-	}
-	else if(av_sample_fmt_is_planar(codecContext->sample_fmt))
-	{
-		// Copy from frame->data. Doesn't need deinterlacing.
-		//std::cerr << "Good Case : \n" << frame->linesize[0] << " " << frame->linesize[1] << std::endl ;
-
 		for(int i = 0; i < frame->linesize[0] ; i += av_get_bytes_per_sample(codecContext->sample_fmt))
 		{
-			vec[0].push_back(bitsToInt<int16_t>(&frame->data[0][i]));
-			vec[1].push_back(bitsToInt<int16_t>(&frame->data[1][i]));
+			for(decltype(vec.size()) channel{}; channel < vec.size(); channel++)
+			{
+				vec[channel].push_back(bitsToInt<int16_t>(&frame->extended_data[channel][i]));
+			}
 		}
 	}
 	else
@@ -47,7 +41,6 @@ void printAudioFrameInfo(const AVCodecContext* codecContext, const AVFrame* fram
 
 std::vector<std::vector<int16_t>> decode(std::string& filename, int& sampleRate, int& channels)
 {
-	std::vector<std::vector<int16_t>> vec(2);
 	// Initialize FFmpeg
 	av_register_all();
 
@@ -87,6 +80,8 @@ std::vector<std::vector<int16_t>> decode(std::string& filename, int& sampleRate,
 	sampleRate = codecContext->sample_rate;
 	channels = codecContext->channels;
 
+	std::vector<std::vector<int16_t>> vec(channels);
+
 	if (avcodec_open2(codecContext, codecContext->codec, NULL) != 0)
 	{
 		av_free(frame);
@@ -120,7 +115,6 @@ std::vector<std::vector<int16_t>> decode(std::string& filename, int& sampleRate,
 
 					// We now have a fully decoded audio frame
 					printAudioFrameInfo(codecContext, frame, vec);
-					// std::cerr << std::to_string(int16_t(frame->data[0][0])) << std::to_string(frame->data[0][frame->nb_samples - 1]) << std::endl;
 				}
 				else
 				{
@@ -145,7 +139,6 @@ std::vector<std::vector<int16_t>> decode(std::string& filename, int& sampleRate,
 		{
 			// We now have a fully decoded audio frame
 			printAudioFrameInfo(codecContext, frame, vec);
-			// std::cerr << frame->data[0][0] << frame->data[0][frame->nb_samples - 1];
 		}
 	}
 

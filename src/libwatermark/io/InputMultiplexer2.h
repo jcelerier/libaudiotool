@@ -36,22 +36,20 @@ class InputMultiplexer : public InputManagerBase<data_type>
 			out->_data.resize(_inputs.size());
 			bool abort{false};
 
-			#pragma omp parallel for
+#pragma omp parallel for
 			for(auto i = 0U; i < _inputs.size(); ++i)
 			{
-				#pragma omp flush (abort)
+#pragma omp flush (abort)
 				if(!abort)
 				{
 					out->_data[i] = _inputs[i]->getNextBuffer();
 
-					#pragma omp critical
+					if(!out->_data[i])
 					{
-						if(!out->_data[i])
-						{
-							abort = true;
-							#pragma omp flush (abort)
-						}
+						abort = true;
+#pragma omp flush (abort)
 					}
+
 				}
 			}
 
