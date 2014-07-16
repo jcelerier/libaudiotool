@@ -1,5 +1,5 @@
 #pragma once
-#include "InputManagerBase.h"
+#include "FileInput.h"
 #include "../mathutils/math_util.h"
 #include <sstream>
 #include "ffmpeg/ffmpeg_wrapper.h"
@@ -14,19 +14,19 @@ template <typename data_type>
  *
  * Convertit un fichier à l'aide de FFMPEG
  */
-class FFMPEGFileInput : public InputManagerBase<data_type>
+class FFMPEGFileInput : public FileInput<data_type>
 {
 	public:
 		FFMPEGFileInput(std::string filename, Parameters<data_type>& cfg):
-			InputManagerBase<data_type>(cfg)
+			FileInput<data_type>(cfg)
 		{
-			readFile(filename);
+			readFileFromSystem(filename);
 		}
 
 		FFMPEGFileInput(std::string filename, InputCopy<data_type>* icp, Parameters<data_type>& cfg):
-			InputManagerBase<data_type>(icp, cfg)
+			FileInput<data_type>(icp, cfg)
 		{
-			readFile(filename);
+			readFileFromSystem(filename);
 		}
 
 		virtual void readFile(std::string &str)
@@ -47,7 +47,7 @@ class FFMPEGFileInput : public InputManagerBase<data_type>
 			}
 		}
 
-		/*
+
 		virtual void readFileFromSystem(std::string& str)
 		{
 			std::stringstream cmd;
@@ -61,5 +61,5 @@ class FFMPEGFileInput : public InputManagerBase<data_type>
 
 			FileInput<data_type>::readFile(str.append(".wav"));
 		}
-		*/
+
 };
