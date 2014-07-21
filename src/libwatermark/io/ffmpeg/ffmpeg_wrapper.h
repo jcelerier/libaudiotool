@@ -35,7 +35,7 @@ void printAudioFrameInfo(const AVCodecContext* codecContext, const AVFrame* fram
 	}
 	else
 	{
-		std::cerr << "TODO";
+		std::cerr << "Not planar\n";
 	}
 }
 

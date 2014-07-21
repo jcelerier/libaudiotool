@@ -1,9 +1,7 @@
 #pragma once
 
-#pragma once
-
-
 #include "InputManagerBase.h"
+#include "mathutils/math_util.h"
 
 template <typename data_type>
 class SummationProxy : public InputManagerBase<data_type>
@@ -47,24 +45,24 @@ class SummationProxy : public InputManagerBase<data_type>
 
 			auto& audio = getAudio<data_type>(buffer);
 
-			// TODO Optimize
-			for(auto j = 0U; j < numChannels; j++)
-				for(auto k = 0U; k < bufferSize; k++)
-					audio[j][k] = 0;
-
-			for(auto k = 0U; k < bufferSize; ++k)
+			for(auto j = 0U; j < numChannels; ++j)
 			{
-				for(auto j = 0U; j < numChannels; j++)
-				{
-					for(auto i = 0U; i < numTracks; i++)
-						audio[j][k] += getAudio<data_type>(getMulti(buf)[i])[j][k];
-				}
-			}
+				auto& summed_chan = audio[j];
 
-			// TODO Optimize
-			for(auto j = 0U; j < numChannels; j++)
-				for(auto k = 0U; k < bufferSize; k++)
-					audio[j][k] /= numTracks;
+				std::swap(summed_chan, getAudio<data_type>(getMulti(buf)[0])[j]);
+
+				for(auto i = 1U; i < numTracks; ++i)
+				{
+					auto& chan = getAudio<data_type>(getMulti(buf)[i])[j];
+					std::transform(std::begin(chan), std::end(chan), std::begin(summed_chan), std::begin(summed_chan),
+					[] (auto& x1, auto& x2)
+					{
+						return x1 + x2;
+					});
+				}
+
+				MathUtil::apply(summed_chan, [&] (auto& elt) { return elt / numTracks; });
+			}
 
 			return buffer;
 		}
