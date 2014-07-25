@@ -44,7 +44,7 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 
 			if(!stream.isStopped())
 			{
-				stream.stop();
+				stopStream();
 			}
 		}
 
@@ -52,7 +52,15 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 		{
 			isRunning = false;
 
-			stream.stop();
+			try
+			{
+				stream.stop();
+			}
+			catch(PaException& e)
+			{
+				std::cerr << "Error while stopping: " << e.what();
+				stream.close();
+			}
 		}
 
 	private:
