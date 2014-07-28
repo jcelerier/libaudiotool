@@ -53,7 +53,7 @@ class FFMPEGFileInput : public FileInput<data_type>
 		virtual void readFileFromSystem(std::string& str)
 		{
 			std::stringstream cmd;
-			cmd << "ffmpeg -y -i \""
+			cmd << "ffmpeg -loglevel warning -y -i \""
 				<< str
 				<< "\" \""
 				<< str
