@@ -2,7 +2,7 @@
 #include "FileInput.h"
 #include "../mathutils/math_util.h"
 #include <sstream>
-#include "ffmpeg/ffmpeg_wrapper.h"
+//#include "ffmpeg/ffmpeg_wrapper.h"
 
 // For system:
 // #include <unistd.h>
@@ -29,6 +29,7 @@ class FFMPEGFileInput : public FileInput<data_type>
 			readFileFromSystem(filename);
 		}
 
+		/*
 		virtual void readFile(std::string &str)
 		{
 			int sr;
@@ -46,6 +47,7 @@ class FFMPEGFileInput : public FileInput<data_type>
 							   MathUtil::ToDouble<int16_t>);
 			}
 		}
+		*/
 
 
 		virtual void readFileFromSystem(std::string& str)
