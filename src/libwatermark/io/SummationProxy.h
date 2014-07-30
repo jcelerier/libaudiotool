@@ -55,13 +55,13 @@ class SummationProxy : public InputManagerBase<data_type>
 				{
 					auto& chan = getAudio<data_type>(getMulti(buf)[i])[j];
 					std::transform(std::begin(chan), std::end(chan), std::begin(summed_chan), std::begin(summed_chan),
-					[] (auto& x1, auto& x2)
+					[] (data_type& x1, data_type& x2)
 					{
 						return x1 + x2;
 					});
 				}
 
-				MathUtil::apply(summed_chan, [&] (auto& elt) { return elt / numTracks; });
+				MathUtil::apply(summed_chan, [&] (data_type& elt) { return elt / numTracks; });
 			}
 
 			return buffer;
