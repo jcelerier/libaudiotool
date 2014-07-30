@@ -52,16 +52,16 @@ class PortaudioOutput : public StreamingOutputInterface<data_type>
 		{
 			isRunning = false;
 
-			try
+//			try
 			{
 				stream.stop();
 			}
-			catch(PaException& e)
+/*			catch(PaException& e)
 			{
 				std::cerr << "Error while stopping: " << e.what();
 				stream.close();
 			}
-		}
+*/		}
 
 	private:
 		int generate(const void *, void *outputBuffer, unsigned long framesPerBuffer,
