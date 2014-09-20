@@ -1,16 +1,18 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console
 QT += core testlib
-
+QMAKE_CXXFLAGS += -std=c++14
 SOURCES += main.cpp \
-#	testlsb.cpp \
+	TestVaria.cpp \ 
+#   tralala.cpp
+# 	testlsb.cpp \
 #	testssw.cpp \
-#	testBenchmark.cpp \
+	testBenchmark.cpp \
 #	testCopy.cpp \
-#	testWindow.cpp \
+	testWindow.cpp \
 #	testrlsb.cpp \
-#	TestTransform.cpp \
-#	testEvaluation.cpp \
+	TestTransform.cpp \
+	testEvaluation.cpp \
 	TestLoop.cpp
 DESTDIR = $$PWD/../../output
 
@@ -41,5 +43,6 @@ LIBS+=-lsndfile -lfftw3 -lgcov -lportaudiocpp -lportaudio
 
 HEADERS += \
 	TestHeader.h \
-	../libwatermark/io/audio/audiomanager.h \
-	../libwatermark/io/audio/audiomanagerthread.h
+#	../libwatermark/io/audio/audiomanager.h \
+#	../libwatermark/io/audio/audiomanagerthread.h \
+    Pipable.h

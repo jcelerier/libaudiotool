@@ -10,10 +10,11 @@
 template <typename data_type>
 class Amplify : public BenchmarkBase<data_type>, public AmplitudeProperty
 {
-		using BenchmarkBase<data_type>::conf;
+		
 		using size_type = typename Parameters<data_type>::size_type;
 
 	public:
+		using BenchmarkBase<data_type>::conf;
 		Amplify(const Parameters<data_type>& configuration):
 			BenchmarkBase<data_type>("Amplify", configuration)
 		{

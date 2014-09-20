@@ -99,5 +99,6 @@ HEADERS += \
     stream_io/StreamingOutputInterface.h \
     io/FFMPEGFileInput.h \
     benchmark/Mute.h \
-    io/ffmpeg/ffmpeg_wrapper.h
+    io/ffmpeg/ffmpeg_wrapper.h \
+    benchmark/BenchmarkFactory.h
 

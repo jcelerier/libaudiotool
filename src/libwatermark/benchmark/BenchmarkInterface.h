@@ -15,6 +15,9 @@ class BenchmarkInterface
 		virtual void operator()(Audio_p& data) = 0;
 
 		std::string _name = "";
+		
+		
+		void is_a_benchmark();
 };
 
 using Benchmark_p = std::shared_ptr<BenchmarkInterface>;

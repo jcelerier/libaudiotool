@@ -8,6 +8,7 @@ void TestSSW();
 void TestTransform();
 void TestEvaluation();
 void TestLoop();
+void TestVaria();
 
 class WatermarkingTests: public QObject
 {
@@ -25,7 +26,8 @@ class WatermarkingTests: public QObject
 			TestTransform();
 			TestEvaluation();
 			*/
-			TestLoop();
+			//TestLoop();
+			TestVaria();
 		}
 
 };

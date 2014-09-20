@@ -29,6 +29,7 @@
 template <typename data_type>
 struct Parameters
 {
+		using type = data_type;
 		using size_type = long unsigned int; /**< A utiliser pour les longueurs de tableau, etc. */
 		using complex_type = std::complex<data_type>; /**< A utiliser pour les nombres complexes. */
 

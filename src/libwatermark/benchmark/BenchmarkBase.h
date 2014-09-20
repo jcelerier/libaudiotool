@@ -22,7 +22,7 @@ class BenchmarkBase : public BenchmarkInterface
 
 		virtual ~BenchmarkBase() = default;
 
-	protected:
+//	protected:
 		const Parameters<data_type>& conf;
 };
 
