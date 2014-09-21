@@ -2,7 +2,7 @@
 #include <manager/StreamingManager.h>
 #include <benchmark/Dummy.h>
 
-#include <io/inputs/InputMultiplexer2.h>
+#include <io/proxies/InputMultiplexer2.h>
 #include <io/proxies/SfxInputProxy.h>
 #include <io/proxies/StereoAdapter.h>
 

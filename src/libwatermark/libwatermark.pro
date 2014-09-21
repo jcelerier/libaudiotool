@@ -74,7 +74,7 @@ HEADERS += \
 	benchmark/Dummy.h \
 	mathutils/WindowMath.h \
         io/proxies/fftproxy/window/HighOrderCosineWindow.h \
-        io/inputs/InputMultiplexer.h \
+        io/proxies/InputMultiplexer.h \
 	benchmark/ComputeRMS.h \
 	watermark/RLSBEncode.h \
 	watermark/RLSBDecode.h \
@@ -84,18 +84,18 @@ HEADERS += \
 	benchmark/properties/Threshold.h \
 	benchmark/properties/Filter.h \
 	benchmark/properties/FFTProperty.h \
-        io/inputs/LoopInputProxy.h \
-        io/inputs/InputMultiplexer2.h \
+        io/proxies/LoopInputProxy.h \
+        io/proxies/InputMultiplexer2.h \
 	benchmark/Sequence.h \
 	benchmark/Pan.h \
-        io/inputs/SfxInputProxy.h \
-        io/inputs/StereoAdapter.h \
+        io/proxies/SfxInputProxy.h \
+        io/proxies/StereoAdapter.h \
         io/outputs/qt_audio/audiomanager.h \
         io/outputs/qt_audio/QtAudioOutput.h \
         io/outputs/qt_audio/audiomanagerthread.h \
         stream_io/PortaudioOutput.h \
         manager/StreamingManager.h \
-        io/inputs/SummationProxy.h \
+        io/proxies/SummationProxy.h \
         stream_io/StreamingOutputInterface.h \
         io/inputs/FFMPEGFileInput.h \
         benchmark/Mute.h \

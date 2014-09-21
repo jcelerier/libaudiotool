@@ -3,7 +3,7 @@
 #include <manager/WatermarkManager.h>
 #include <benchmark/Dummy.h>
 
-#include <io/inputs/InputMultiplexer.h>
+#include <io/proxies/InputMultiplexer.h>
 #include <io/proxies/SfxInputProxy.h>
 #include <io/proxies/StereoAdapter.h>
 

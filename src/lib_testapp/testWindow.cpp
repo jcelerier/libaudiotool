@@ -4,7 +4,7 @@
 #include <io/proxies/fftproxy/FFTInputProxy.h>
 #include <io/proxies/fftproxy/FFTOutputProxy.h>
 
-#include <io/inputs/InputMultiplexer.h>
+#include <io/proxies/InputMultiplexer.h>
 #include <io/inputs/BufferInput.h>
 #include <io/outputs/BufferOutput.h>
 #include <io/inputs/SilenceInput.h>

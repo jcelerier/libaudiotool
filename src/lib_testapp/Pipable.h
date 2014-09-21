@@ -3,11 +3,10 @@
 #include "benchmark/Sequence.h"
 
 template<typename data_type, typename B>
-auto operator|(std::shared_ptr<Sequence<data_type>> a, B&& b) ->
-    std::shared_ptr<Sequence<data_type>>
+std::shared_ptr<Sequence<data_type>> operator|(std::shared_ptr<Sequence<data_type>> a, B&& b)
 {
-    a->appendAlgorithm(b);
-    return a;
+	a->appendAlgorithm(b);
+	return a;
 }
 /*
 template <typename data_type>
