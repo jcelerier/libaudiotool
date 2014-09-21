@@ -1,19 +1,56 @@
-#include "manager/WatermarkManager.h"
-#include "io/FileInput.h"
-#include "io/FileOutput.h"
-#include "io/BufferInput.h"
-#include "io/BufferOutput.h"
-#include "io/fftproxy/FFTInputProxy.h"
-#include "io/fftproxy/FFTOutputProxy.h"
-#include "transform/FFTWManager.h"
-#include "io/SilenceInput.h"
-#include "io/DummyOutput.h"
-#include "watermarkdata/SimpleWatermarkData.h"
-#include "io/mcltproxy/MCLTInputProxy.h"
-#include "io/mcltproxy/MCLTOutputProxy.h"
+#include <manager/BenchmarkManager.h>
+#include <manager/StreamingManager.h>
+#include <manager/WatermarkManager.h>
+#include <benchmark/Dummy.h>
 
-#include "io/InputMultiplexer.h"
+#include <io/inputs/InputMultiplexer.h>
+#include <io/proxies/SfxInputProxy.h>
+#include <io/proxies/StereoAdapter.h>
+
+#include <benchmark/Pan.h>
+#include <benchmark/Amplify.h>
+#include <benchmark/Sequence.h>
+
+#include <io/outputs/qt_audio/QtAudioOutput.h>
+#include <io/proxies/SummationProxy.h>
+
+#include <stream_io/PortaudioOutput.h>
+
+#include <io/inputs/FileInput.h>
+#include <io/outputs/FileOutput.h>
+#include <io/inputs/SilenceInput.h>
+#include <io/proxies/fftproxy/FFTInputProxy.h>
+#include <io/proxies/fftproxy/FFTOutputProxy.h>
+
+#include <io/inputs/BufferInput.h>
+#include <io/outputs/BufferOutput.h>
+#include <io/inputs/SilenceInput.h>
+#include <io/outputs/DummyOutput.h>
+#include "watermarkdata/SimpleWatermarkData.h"
+#include "timeadapter/Every.h"
+
+#include <io/proxies/mcltproxy/MCLTInputProxy.h>
+#include <io/proxies/mcltproxy/MCLTOutputProxy.h>
+#include "watermark/DummyWatermark.h"
+#include "mathutils/ssw_utils.h"
+#include "transform/FFTWManager.h"
+#include "watermark/SSWEncode.h"
+#include "watermark/SSWDecode.h"
+
+#include "TestHeader.h"
+
+#include "io/copystyle/InputSimple.h"
 #include "io/copystyle/InputOLA.h"
+#include "io/copystyle/InputFilter.h"
+#include "io/copystyle/OutputSimple.h"
+#include "io/copystyle/OutputOLA.h"
+#include "io/copystyle/OutputFilter.h"
+
+#include "benchmark/Dummy.h"
+#include "benchmark/Amplify.h"
+
+#include "manager/BenchmarkManager.h"
+
 #include "io/copystyle/OutputOLA.h"
 #include "benchmark/Dummy.h"
 #include "benchmark/ComputeRMS.h"

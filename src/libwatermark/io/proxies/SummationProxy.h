@@ -1,7 +1,7 @@
 #pragma once
 
-#include "InputManagerBase.h"
-#include "mathutils/math_util.h"
+#include <io/inputs/InputManagerBase.h>
+#include <mathutils/math_util.h>
 
 template <typename data_type>
 class SummationProxy : public InputManagerBase<data_type>

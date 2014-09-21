@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "InputManagerBase.h"
+#include <io/inputs/InputManagerBase.h>
 
 template <typename data_type>
 class LoopInputProxy : public InputManagerBase<data_type>

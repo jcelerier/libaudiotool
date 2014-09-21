@@ -2,8 +2,8 @@
 #include <iostream>
 #include <memory>
 
-#include "InputManagerBase.h"
-#include "../Data.h"
+#include <io/inputs/InputManagerBase.h>
+#include <Data.h>
 
 template <typename data_type>
 class StereoAdapter : public InputManagerBase<data_type>

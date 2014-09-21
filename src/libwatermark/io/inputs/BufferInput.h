@@ -2,8 +2,8 @@
 #include <algorithm>
 
 #include "InputManagerBase.h"
-#include "BufferOutput.h"
-#include "../mathutils/math_util.h"
+#include <io/outputs/BufferOutput.h>
+#include <mathutils/math_util.h>
 
 template <typename data_type>
 /**

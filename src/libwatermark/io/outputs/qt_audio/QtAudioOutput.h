@@ -2,7 +2,7 @@
 
 #include "../OutputManagerBase.h"
 #include "audiomanagerthread.h"
-#include "../../mathutils/math_util.h"
+#include <mathutils/math_util.h>
 #include <thread>
 #include <unistd.h>
 template <typename data_type>

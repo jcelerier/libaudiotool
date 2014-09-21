@@ -2,8 +2,8 @@
 
 #include <sndfile.hh>
 
-#include "OutputManagerBase.h"
-#include "../mathutils/math_util.h"
+#include <io/outputs/OutputManagerBase.h>
+#include <mathutils/math_util.h>
 
 template <typename data_type>
 /**

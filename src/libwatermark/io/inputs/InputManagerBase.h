@@ -2,8 +2,8 @@
 #include <iostream>
 #include <memory>
 
-#include "IOManagerBase.h"
-#include "copystyle/InputSimple.h"
+#include <io/IOManagerBase.h>
+#include <io/copystyle/InputSimple.h>
 
 template <typename data_type>
 /**

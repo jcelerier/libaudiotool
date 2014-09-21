@@ -1,7 +1,28 @@
 #include "manager/BenchmarkManager.h"
-#include "io/FileInput.h"
-#include "io/FileOutput.h"
-#include "io/SilenceInput.h"
+
+#include <io/inputs/FileInput.h>
+#include <io/outputs/FileOutput.h>
+#include <io/inputs/SilenceInput.h>
+#include <io/proxies/fftproxy/FFTInputProxy.h>
+#include <io/proxies/fftproxy/FFTOutputProxy.h>
+
+#include <io/inputs/BufferInput.h>
+#include <io/outputs/BufferOutput.h>
+#include <io/inputs/SilenceInput.h>
+#include <io/outputs/DummyOutput.h>
+#include "watermarkdata/SimpleWatermarkData.h"
+#include "timeadapter/Every.h"
+
+#include <io/proxies/mcltproxy/MCLTInputProxy.h>
+#include <io/proxies/mcltproxy/MCLTOutputProxy.h>
+#include "watermark/DummyWatermark.h"
+#include "mathutils/ssw_utils.h"
+#include "transform/FFTWManager.h"
+#include "watermark/SSWEncode.h"
+#include "watermark/SSWDecode.h"
+
+#include "TestHeader.h"
+
 #include "io/copystyle/InputFilter.h"
 #include "io/copystyle/OutputFilter.h"
 #include "io/copystyle/InputOLA.h"
@@ -18,10 +39,6 @@
 #include "benchmark/Stat1.h"
 #include "benchmark/FFTNoise.h"
 #include "../libwatermark/watermark/mask.h"
-
-#include "transform/FFTWManager.h"
-#include "io/fftproxy/FFTInputProxy.h"
-#include "io/fftproxy/FFTOutputProxy.h"
 
 void DoubleTestBase(Benchmark_p b, Parameters<double> conf)
 {

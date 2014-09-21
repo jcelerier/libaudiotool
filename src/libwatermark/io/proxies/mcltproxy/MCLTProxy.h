@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../OutputManagerBase.h"
-#include "../../transform/MCLT.h"
+#include <io/outputs/OutputManagerBase.h>
+#include <transform/MCLT.h>
 
 template <typename data_type>
 class MCLTProxy

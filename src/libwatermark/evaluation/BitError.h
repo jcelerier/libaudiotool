@@ -1,12 +1,12 @@
 #pragma once
 
-#include "io/FileInput.h"
-#include "io/FileOutput.h"
+#include <io/inputs/FileInput.h>
+#include <io/outputs/FileOutput.h>
 
-#include "io/BufferInput.h"
-#include "io/BufferOutput.h"
-#include "io/SilenceInput.h"
-#include "io/DummyOutput.h"
+#include <io/inputs/BufferInput.h>
+#include <io/outputs/BufferOutput.h>
+#include <io/inputs/SilenceInput.h>
+#include <io/outputs/DummyOutput.h>
 #include "io/copystyle/InputFilter.h"
 #include "io/copystyle/OutputFilter.h"
 #include "watermarkdata/SimpleWatermarkData.h"
@@ -32,8 +32,8 @@
 #include "manager/BenchmarkManager.h"
 
 #include "transform/FFTWManager.h"
-#include "io/fftproxy/FFTInputProxy.h"
-#include "io/fftproxy/FFTOutputProxy.h"
+#include "io/proxies/fftproxy/FFTInputProxy.h"
+#include "io/proxies/fftproxy/FFTOutputProxy.h"
 #include <string>
 #include <algorithm>
 #include <random>

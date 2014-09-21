@@ -1,8 +1,8 @@
 #pragma once
 
 #include "FFTProxy.h"
-#include "../InputManagerBase.h"
-#include "../copystyle/InputOLA.h"
+#include <io/inputs/InputManagerBase.h>
+#include <io/copystyle/InputOLA.h>
 #include "window/BartlettWindow.h"
 #include "window/RectWindow.h"
 

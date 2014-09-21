@@ -1,27 +1,17 @@
 #pragma once
 
-#include "io/InputManagerBase.h"
 #include "benchmark/Sequence.h"
-#include "benchmark/BenchmarkFactory.h"
 
-class Sequence_Wrapper : public Sequence<double>
+template<typename data_type, typename B>
+auto operator|(std::shared_ptr<Sequence<data_type>> a, B&& b) ->
+    std::shared_ptr<Sequence<data_type>>
 {
-        using Sequence<double>::Sequence;
-};
-
-template<typename A, typename B>
-auto operator|(A&& a, B&& b) ->
-    decltype(a->is_a_benchmark(),
-             std::shared_ptr<Sequence<double>>())
-{
-    std::cerr << "operator|\n  a: "  << typeid(A).name()
-              << "\n  b: " << typeid(B).name() << std::endl;
-    return std::shared_ptr<Sequence<double>>(new Sequence<double>(a->conf, a, b));
+    a->appendAlgorithm(b);
+    return a;
 }
 /*
-template<typename A, typename T>
-auto operator|(A&& a, std::function<void(std::vector<T>&)> vect_func) -> std::shared_ptr<Sequence_Wrapper>
+template <typename data_type>
+auto operator|(Input_p lh, Input_p rh)
 {
-	return std::make_shared<Sequence_Wrapper>(a->conf, a, make_benchmark(vect_func));
-}
-*/
+
+}*/

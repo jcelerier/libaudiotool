@@ -5,12 +5,12 @@ QMAKE_CXXFLAGS += -std=c++14
 SOURCES += main.cpp \
 	TestVaria.cpp \ 
 #   tralala.cpp
-# 	testlsb.cpp \
-#	testssw.cpp \
+        testlsb.cpp \
+        testssw.cpp \
 	testBenchmark.cpp \
-#	testCopy.cpp \
+        testCopy.cpp \
 	testWindow.cpp \
-#	testrlsb.cpp \
+        testrlsb.cpp \
 	TestTransform.cpp \
 	testEvaluation.cpp \
 	TestLoop.cpp

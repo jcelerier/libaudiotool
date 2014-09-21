@@ -17,7 +17,7 @@ class Sequence : public BenchmarkBase<data_type>
 				 A&&... algorithms):
 			BenchmarkBase<data_type>("Sequence", configuration)
 		{
-			initAlgos(algorithms...);
+            appendAlgorithm(algorithms...);
         }
 
         virtual void operator()(Audio_p& data) override
@@ -25,59 +25,44 @@ class Sequence : public BenchmarkBase<data_type>
             for(auto& effect : _effects) effect(data); // blehehee
         }
 
-        void initAlgos(){}
         std::vector<std::function<void(Audio_p&)>> _effects{};
 
+        // Here be dragons ...
+        void appendAlgorithm(){}
+
+        // For chaining
         template<typename... A>
-        void initAlgos(std::shared_ptr<Sequence<data_type>> seq, A&&... args)
+        void appendAlgorithm(std::shared_ptr<Sequence<data_type>> seq, A&&... args)
         {
-            std::cerr << "Num. 2" << std::endl;
             _effects.insert( _effects.end(), seq->_effects.begin(), seq->_effects.end() );
 
-            initAlgos(args...);
+            appendAlgorithm(args...);
         }
 
-        template<typename Algos, typename... A>
-        auto initAlgos(Algos&& a, A&&... args)
-        -> typename
-        std::enable_if
-        <
-            std::is_base_of
-            <
-                BenchmarkBase<data_type>,
-                typename std::decay<Algos>::type::element_type
-            >::value
-        >::type
-        {
-            std::cerr << "Num. 1  "  << typeid(Algos).name() << std::endl;
-            _effects.push_back(std::bind(&BenchmarkInterface::operator(),
-                                            a.get(), std::placeholders::_1));
-            initAlgos(args...);
-        }
-
+        // For void(std::vector<data_type>&) stuff
         template<typename F, typename... A>
-        auto initAlgos(F&& f, A&&... args)
+        auto appendAlgorithm(F&& f, A&&... args)
         -> decltype( f(std::declval<std::vector<data_type>&>()), void() )
         {
-            std::cerr << "Num. 3" << std::endl;
             _effects.push_back(std::bind(&vectorAlgorithmFactory<data_type>, std::placeholders::_1, f));
 
-            initAlgos(args...);
+            appendAlgorithm(args...);
         }
 
+        // For void(std::vector<std::vector<data_type>>&) stuff
         template<typename F, typename... A>
-        auto initAlgos(F&& f, A&&... args)
+        auto appendAlgorithm(F&& f, A&&... args)
         -> decltype( f(std::declval<std::vector<std::vector<data_type>>&>()), void() )
         {
-            std::cerr << "Num. 3" << std::endl;
             _effects.push_back(std::bind(&channelAlgorithmFactory<data_type>, std::placeholders::_1, f));
 
-            initAlgos(args...);
+            appendAlgorithm(args...);
         }
 
 
+        // For data_type(const data_type&) stuff
         template<typename F, typename... A>
-        auto initAlgos(F&& f, A&&... args)
+        auto appendAlgorithm(F&& f, A&&... args)
         -> typename
         std::enable_if
         <
@@ -89,10 +74,27 @@ class Sequence : public BenchmarkBase<data_type>
             void
         >::type
         {
-            std::cerr << "Num. 4" << std::endl;
             _effects.push_back(std::bind(&valueAlgorithmFactory<data_type>, std::placeholders::_1, f));
 
-            initAlgos(args...);
+            appendAlgorithm(args...);
+        }
+
+        // For Benchmark inherited stuff
+        template<typename Algorithm, typename... A>
+        auto appendAlgorithm(Algorithm&& a, A&&... args)
+        -> typename
+        std::enable_if
+        <
+            std::is_base_of
+            <
+                BenchmarkBase<data_type>,
+                typename std::decay<Algorithm>::type::element_type
+            >::value
+        >::type
+        {
+            _effects.push_back(std::bind(&BenchmarkInterface::operator(),
+                                            a.get(), std::placeholders::_1));
+            appendAlgorithm(args...);
         }
 
         /*

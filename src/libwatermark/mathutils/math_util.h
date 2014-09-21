@@ -4,6 +4,7 @@
 #include <iterator>
 #include <type_traits>
 #include <iostream>
+#include <algorithm>
 //! Mathematic utilities.
 namespace MathUtil
 {

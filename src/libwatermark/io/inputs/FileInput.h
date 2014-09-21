@@ -1,8 +1,8 @@
 #pragma once
 #include <sndfile.hh>
 
-#include "InputManagerBase.h"
-#include "../mathutils/math_util.h"
+#include <io/inputs/InputManagerBase.h>
+#include <mathutils/math_util.h>
 
 template <typename data_type>
 /**

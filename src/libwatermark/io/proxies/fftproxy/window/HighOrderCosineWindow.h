@@ -2,7 +2,7 @@
 #include <initializer_list>
 
 #include "WindowBase.h"
-#include "../../../mathutils/WindowMath.h"
+#include <mathutils/WindowMath.h>
 
 namespace CosineWindows
 {

@@ -1,7 +1,7 @@
 #include "manager/WatermarkManager.h"
-#include "io/FileInput.h"
-#include "io/FileOutput.h"
-#include "io/DummyOutput.h"
+#include <io/inputs/FileInput.h>
+#include <io/outputs/FileOutput.h>
+#include <io/outputs/DummyOutput.h>
 #include "watermark/RLSBEncode.h"
 #include "watermark/RLSBDecode.h"
 #include "watermarkdata/SimpleWatermarkData.h"

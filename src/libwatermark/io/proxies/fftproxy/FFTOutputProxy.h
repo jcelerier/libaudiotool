@@ -1,10 +1,10 @@
 #pragma once
 
 #include "FFTProxy.h"
-#include "../InputManagerBase.h"
-#include "../copystyle/OutputSimple.h"
-#include "../copystyle/OutputOLA.h"
-#include "../../mathutils/math_util.h"
+#include <io/outputs/OutputManagerBase.h>
+#include <io/copystyle/OutputSimple.h>
+#include <io/copystyle/OutputOLA.h>
+#include <mathutils/math_util.h>
 
 template <typename data_type>
 /**

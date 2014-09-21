@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "../../../Parameters.h"
+#include <Parameters.h>
 
 template <typename data_type>
 /**

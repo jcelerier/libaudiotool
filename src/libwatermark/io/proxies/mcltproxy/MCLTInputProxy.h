@@ -1,7 +1,7 @@
 #pragma once
 
 #include "MCLTProxy.h"
-#include "../InputManagerBase.h"
+#include <io/inputs/InputManagerBase.h>
 
 template <typename data_type>
 class MCLTInputProxy : public MCLTProxy<data_type>, public InputManagerBase<data_type>

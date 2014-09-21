@@ -1,7 +1,7 @@
 #pragma once
 #include <functional>
 
-#include "../io/OutputManagerBase.h"
+#include <io/outputs/OutputManagerBase.h>
 
 template <typename data_type>
 class StreamingOutputInterface : public OutputManagerBase<data_type>

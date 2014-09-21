@@ -1,7 +1,7 @@
 #pragma once
 
-#include "OutputManagerBase.h"
-#include "gnuplot/gnuplot_i.h"
+#include <io/outputs/OutputManagerBase.h>
+#include "gnuplot_private/gnuplot_i.h"
 #include <numeric>
 #include <algorithm>
 #include <complex>

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../transform/FFTManager.h"
+#include <transform/FFTManager.h>
 
 template <typename data_type>
 /**

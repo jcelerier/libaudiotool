@@ -6,6 +6,8 @@
 
 #include "properties/Amplitude.h"
 
+#include <mathutils/math_util.h>
+
 /**
  *
  *  Pan : varie entre -1 et 1.

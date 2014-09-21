@@ -2,7 +2,7 @@
 #include <iostream>
 #include <memory>
 
-#include "InputManagerBase.h"
+#include <io/inputs/InputManagerBase.h>
 
 template <typename data_type>
 class SfxInputProxy : public InputManagerBase<data_type>

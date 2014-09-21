@@ -1,13 +1,8 @@
 #pragma once
 #include <iostream>
 
-#include "IOManagerBase.h"
-#include "copystyle/OutputSimple.h"
-
-
-
-
-
+#include <io/IOManagerBase.h>
+#include <io/copystyle/OutputSimple.h>
 
 template <typename data_type>
 /**

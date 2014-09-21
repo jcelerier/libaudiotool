@@ -1,7 +1,7 @@
 #pragma once
 
 #include "MCLTProxy.h"
-#include "../OutputManagerBase.h"
+#include <io/outputs/OutputManagerBase.h>
 
 template <typename data_type>
 class MCLTOutputProxy : public MCLTProxy<data_type>, public OutputManagerBase<data_type>

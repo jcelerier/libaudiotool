@@ -1,8 +1,8 @@
 #pragma once
 
-#include "OutputManagerBase.h"
-#include "../mathutils/math_util.h"
-#include "gnuplot/gnuplot_i.h"
+#include <io/outputs/OutputManagerBase.h>
+#include <mathutils/math_util.h>
+#include "gnuplot_private/gnuplot_i.h"
 
 template <typename data_type>
 /**

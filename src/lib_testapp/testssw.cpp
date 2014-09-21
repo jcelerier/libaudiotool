@@ -1,23 +1,25 @@
 #include "manager/WatermarkManager.h"
-#include "io/FileInput.h"
-#include "io/FileOutput.h"
-#include "io/fftproxy/FFTInputProxy.h"
-#include "io/fftproxy/FFTOutputProxy.h"
+
+#include <io/inputs/FileInput.h>
+#include <io/outputs/FileOutput.h>
+#include <io/outputs/DummyOutput.h>
+#include <io/proxies/fftproxy/FFTInputProxy.h>
+#include <io/proxies/fftproxy/FFTOutputProxy.h>
+
+#include <io/inputs/BufferInput.h>
+#include <io/outputs/BufferOutput.h>
+#include <io/inputs/SilenceInput.h>
+#include <io/outputs/DummyOutput.h>
+#include "watermarkdata/SimpleWatermarkData.h"
+#include "timeadapter/Every.h"
+
+#include <io/proxies/mcltproxy/MCLTInputProxy.h>
+#include <io/proxies/mcltproxy/MCLTOutputProxy.h>
+#include "watermark/DummyWatermark.h"
+#include "mathutils/ssw_utils.h"
 #include "transform/FFTWManager.h"
 #include "watermark/SSWEncode.h"
 #include "watermark/SSWDecode.h"
-#include "io/BufferInput.h"
-#include "io/BufferOutput.h"
-#include "io/SilenceInput.h"
-#include "io/DummyOutput.h"
-#include "watermarkdata/SimpleWatermarkData.h"
-#include "timeadapter/Every.h"
-#include "io/GnuplotFFTOutput.h"
-#include "io/GnuplotOutput.h"
-#include "io/mcltproxy/MCLTInputProxy.h"
-#include "io/mcltproxy/MCLTOutputProxy.h"
-#include "watermark/DummyWatermark.h"
-#include "mathutils/ssw_utils.h"
 #include "TestHeader.h"
 
 void sswencode(std::vector<int> & PNSequence, std::vector<unsigned int> & FreqRange, Parameters<double> & conf, double watermarkAmplitude);

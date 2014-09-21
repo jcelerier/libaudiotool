@@ -2,7 +2,7 @@
 #include <algorithm>
 
 #include "InputManagerBase.h"
-#include "../mathutils/math_util.h"
+#include <mathutils/math_util.h>
 
 template <typename data_type>
 /**
