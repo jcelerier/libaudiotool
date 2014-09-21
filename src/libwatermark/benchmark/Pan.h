@@ -16,7 +16,7 @@
  *				 1 : canal gauche à 0, canal droit à 1.
  */
 template <typename data_type>
-class Pan : public BenchmarkBase<data_type>, public AmplitudeProperty
+class Pan : public BenchmarkBase<data_type>
 {
 		using BenchmarkBase<data_type>::conf;
 		using size_type = typename Parameters<data_type>::size_type;

@@ -23,7 +23,7 @@ class ComputeRMS : public BenchmarkBase<data_type>
 			auto  in1 = getAudio<data_type>(getMulti(in)[0]);
 			auto& in2 = getAudio<data_type>(getMulti(in)[1]);
 
-			for(int i = 0; i < in1.size(); i++)
+            for(int i = 0; i < in1.size(); i++)
 			{
 				std::transform(in1[i].begin(),
 							   in1[i].end(),

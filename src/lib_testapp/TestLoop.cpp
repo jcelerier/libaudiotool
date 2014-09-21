@@ -18,7 +18,7 @@
 #include <io/SummationProxy.h>
 
 #include <stream_io/PortaudioOutput.h>
-
+/*
 void testMultiplex()
 {
 	Parameters<double> conf;
@@ -50,12 +50,13 @@ void testMultiplex()
 	auto zeO = new PortaudioOutput<double>(conf);
 	auto output = std::shared_ptr<PortaudioOutput<double>>(zeO);
 
-	StreamingManager<double> manager(std::move(input), std::move(output), conf);
+    StreamingManager<double> manager(input, output, conf);
 
 	manager.execute();
 
 	//zeO->writeFile("output_loop_sum.wav");
 }
+*/
 
 void testLoop()
 {
@@ -74,7 +75,7 @@ void testLoop()
 	zeO->writeFile("output_loop.wav");
 }
 
-
+/*
 void testStream()
 {
 	Parameters<double> conf;
@@ -87,10 +88,10 @@ void testStream()
 
 	manager.execute();
 }
-
+*/
 void TestLoop()
 {
 	//testLoop();
 	//testMultiplex();
-	testStream();
+    //testStream();
 }

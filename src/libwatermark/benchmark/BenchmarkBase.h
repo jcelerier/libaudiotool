@@ -18,7 +18,7 @@ class BenchmarkBase : public BenchmarkInterface
 			BenchmarkInterface(name),
 			conf(configuration)
 		{
-		}
+        }
 
 		virtual ~BenchmarkBase() = default;
 
