@@ -3,6 +3,8 @@
 #include "ManagerBase.h"
 #include "../Data.h"
 #include "../stream_io/StreamingOutputInterface.h"
+#include <mathutils/math_util.h>
+#include <QDebug>
 
 /**
  * @brief Main class.
@@ -22,7 +24,7 @@ class StreamingManager: public ManagerBase
 		{
 		}
 
-		int generate(void* outputBuffer )
+        int generate_deinterleaved(void* outputBuffer )
 		{
 			float **out = static_cast<float **>(outputBuffer);
 
@@ -46,9 +48,36 @@ class StreamingManager: public ManagerBase
 			return 0;
 		}
 
+        int generate_interleaved(void* outputBuffer )
+        {
+            float *out = static_cast<float *>(outputBuffer);
+
+            Audio_p buffer = m_input->getNextBuffer();
+            if(!buffer)
+            {
+                static_cast<StreamingOutputInterface<data_type>*>(output().get())->stopStream();
+                return 1;
+            }
+            auto audio = getAudio<data_type>(buffer); // Should be stereo.
+            auto interleaved = MathUtil::interleave(audio);
+
+            for(int i = 0; i < interleaved.size(); i++)
+            {
+                out[i] = interleaved[i];
+            }
+
+            timeHandle();
+
+            return 0;
+        }
+
 		virtual void execute() override
 		{
-			static_cast<StreamingOutputInterface<data_type>*>(output().get())->startStream(std::bind(&StreamingManager::generate, this, std::placeholders::_1));
+            static_cast<StreamingOutputInterface<data_type>*>(
+                        output().get())->startStream(
+                            std::bind(&StreamingManager::generate_interleaved,
+                                        this,
+                                        std::placeholders::_1));
 		}
 
 		void stop()

@@ -26,8 +26,8 @@ class WatermarkingTests: public QObject
 			TestTransform();
 			TestEvaluation();
 			*/
-			//TestLoop();
-			TestVaria();
+            TestLoop();
+            //TestVaria();
 		}
 
 };

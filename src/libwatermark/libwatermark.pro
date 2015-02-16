@@ -94,6 +94,7 @@ HEADERS += \
         io/outputs/qt_audio/QtAudioOutput.h \
         io/outputs/qt_audio/audiomanagerthread.h \
         stream_io/PortaudioOutput.h \
+        stream_io/RtAudioOutput.h \
         manager/StreamingManager.h \
         io/proxies/SummationProxy.h \
         stream_io/StreamingOutputInterface.h \

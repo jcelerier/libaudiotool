@@ -38,7 +38,7 @@ QMAKE_CXXFLAGS += -std=c++11
 INCLUDEPATH += $$PWD/../libwatermark
 DEPENDPATH += $$PWD/../libwatermark
 
-LIBS+=-lsndfile -lfftw3 -lgcov -lportaudiocpp -lportaudio
+LIBS+=-lsndfile -lfftw3 -lgcov -lportaudiocpp -lportaudio -lrtaudio
 
 
 HEADERS += \
